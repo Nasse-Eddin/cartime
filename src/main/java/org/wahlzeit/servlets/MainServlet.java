@@ -151,7 +151,7 @@ public class MainServlet extends AbstractServlet {
 	protected Map getMultiPartRequestArgs(HttpServletRequest request, UserSession us) throws IOException,
 			ServletException {
 		Map<String, String> result = new HashMap<String, String>();
-		result.putAll(request.getParameterMap());
+//		result.putAll(request.getParameterMap()); TODO Error
 		try {
 			ServletFileUpload upload = new ServletFileUpload();
 			FileItemIterator iterator = upload.getItemIterator(request);
