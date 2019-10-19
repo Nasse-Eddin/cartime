@@ -5,8 +5,8 @@ services:
 
 env:
   global:
-    - IMAGE_NAME=$nassereddinnasser/wahlzeit
-    - IMAGE_NAME_TAGGED=$nassereddinnasser/wahlzeit:${TRAVIS_TAG}
+    - IMAGE_NAME=nassereddinnasser/wahlzeit
+    - IMAGE_NAME_TAGGED=nassereddinnasser/wahlzeit:${TRAVIS_TAG}
 
 script:
   - docker build -t ${IMAGE_NAME} .
