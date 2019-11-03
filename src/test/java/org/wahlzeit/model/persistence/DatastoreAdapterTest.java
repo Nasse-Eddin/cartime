@@ -2,7 +2,6 @@ package org.wahlzeit.model.persistence;
 
 import com.google.appengine.api.images.Image;
 import com.google.appengine.api.images.ImagesServiceFactory;
-import junit.framework.TestCase;
 import org.junit.ClassRule;
 import org.junit.Test;
 import org.junit.rules.RuleChain;
