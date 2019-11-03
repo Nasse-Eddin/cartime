@@ -1,12 +1,13 @@
 package org.wahlzeit.model;
 
+import junit.framework.TestCase;
 import org.junit.Test;
 import org.wahlzeit.model.Coordinate;
 
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
-public class CoordinateTest {
+public class CoordinateTest  {
     @Test
     public void getDistanceBetweenTheEqualsCoordinates() {
         Coordinate coordinate1 = new Coordinate(0, 0, 0);

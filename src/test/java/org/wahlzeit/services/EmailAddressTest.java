@@ -21,50 +21,69 @@
 package org.wahlzeit.services;
 
 import junit.framework.TestCase;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.Test;
+import org.wahlzeit.services.mailing.EmailServiceManager;
 
 /**
  * Test cases for the EmailAddress class.
  */
 public class EmailAddressTest extends TestCase {
 
-	/**
-	 *
-	 */
-	public EmailAddressTest(String name) {
-		super(name);
-	}
 
-	/**
-	 *
-	 */
-	public void testGetEmailAddressFromString() {
-		// invalid email addresses are allowed for local testing and online avoided by Google
+    /**
+     *
+     */
+    public EmailAddressTest(String name) {
+        super(name);
+    }
 
-		assertTrue(createEmailAddressIgnoreException("bingo@bongo"));
-		assertTrue(createEmailAddressIgnoreException("bingo@bongo.com"));
-		assertTrue(createEmailAddressIgnoreException("bingo.bongo@bongo.com"));
-		assertTrue(createEmailAddressIgnoreException("bingo+bongo@bango"));
-	}
+    @Test
+    public void testGetEmailAddressFromInvalidString() {
+        EmailAddress.STRONG_CHECK = true;
+        assertFalse(createEmailAddressIgnoreException("bingo+bongo@bango"));
+        assertFalse(createEmailAddressIgnoreException("bingo@bongo"));
+        assertFalse(createEmailAddressIgnoreException("bingo.bongo"));
+        assertFalse(createEmailAddressIgnoreException(" "));
+        assertFalse(createEmailAddressIgnoreException("15"));
+        assertFalse(createEmailAddressIgnoreException("bin@bing@bin"));
+        assertFalse(createEmailAddressIgnoreException("!bin@bing.bin"));
+    }
 
-	/**
-	 *
-	 */
-	protected boolean createEmailAddressIgnoreException(String ea) {
-		try {
-			EmailAddress.getFromString(ea);
-			return true;
-		} catch (IllegalArgumentException ex) {
-			// creation failed
-			return false;
-		}
-	}
+    /**
+     *
+     */
+    @Test
+    public void testGetEmailAddressFromValidString() {
+        // invalid email addresses are allowed for local testing and online avoided by Google
+        assertTrue(createEmailAddressIgnoreException("bingo@bongo.com"));
+        assertTrue(createEmailAddressIgnoreException("bingo.bongo@bongo.com"));
+        EmailAddress.STRONG_CHECK = false;
+    }
 
-	/**
-	 *
-	 */
-	public void testEmptyEmailAddress() {
-		assertFalse(EmailAddress.EMPTY.isValid());
-	}
+
+    /**
+     *
+     */
+    protected boolean createEmailAddressIgnoreException(String ea) {
+        try {
+            EmailAddress.getFromString(ea);
+            return true;
+        } catch (IllegalArgumentException ex) {
+            // creation failed
+            return false;
+        }
+    }
+
+    /**
+     *
+     */
+    public void testEmptyEmailAddress() {
+        assertFalse(EmailAddress.EMPTY.isValid());
+        assertFalse(EmailAddress.doGetFromString("").isValid());
+    }
 
 }
 

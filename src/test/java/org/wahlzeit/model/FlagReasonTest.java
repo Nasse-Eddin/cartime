@@ -20,6 +20,7 @@
 
 package org.wahlzeit.model;
 
+import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -36,7 +37,7 @@ import static org.junit.Assert.fail;
 /**
  * Test cases for the FlagReason class.
  */
-public class FlagReasonTest {
+public class FlagReasonTest{
 
 	/**
 	 *

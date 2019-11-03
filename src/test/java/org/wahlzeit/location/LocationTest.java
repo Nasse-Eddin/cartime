@@ -1,11 +1,12 @@
 package org.wahlzeit.location;
 
+import junit.framework.TestCase;
 import org.junit.Test;
 import org.wahlzeit.model.Coordinate;
 
 import static org.junit.Assert.*;
 
-public class LocationTest {
+public class LocationTest  {
 
     @Test
     public void testGetCoordinate() {

@@ -2,6 +2,7 @@ package org.wahlzeit.model;
 
 import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.Work;
+import junit.framework.TestCase;
 import org.junit.ClassRule;
 import org.junit.Test;
 import org.junit.rules.RuleChain;
@@ -14,7 +15,7 @@ import static org.junit.Assert.assertNotNull;
 /**
  * Test class for {@link Guest}.
  */
-public class GuestTest {
+public class GuestTest  {
 
 	@ClassRule
 	public static RuleChain ruleChain = RuleChain.

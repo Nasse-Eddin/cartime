@@ -26,104 +26,115 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+
+
 /**
  * An email address provides a simple email address representation.
  * It is a value object and implemented as immutable.
  */
 public class EmailAddress implements Serializable {
+    public static Boolean STRONG_CHECK=false;
+    /**
+     *
+     */
+    protected static final Map<String, EmailAddress> instances = new HashMap<String, EmailAddress>();
 
-	/**
-	 *
-	 */
-	protected static final Map<String, EmailAddress> instances = new HashMap<String, EmailAddress>();
+    /**
+     *
+     */
+    public static final EmailAddress EMPTY = doGetFromString(""); // after map initialization...
+    /**
+     *
+     */
+    protected String value;
 
-	/**
-	 *
-	 */
-	public static final EmailAddress EMPTY = doGetFromString(""); // after map initialization...
-	/**
-	 *
-	 */
-	protected String value;
+    private EmailAddress() {
+        // for Objectify to load
+    }
 
-	private EmailAddress() {
-		// for Objectify to load
-	}
+    /**
+     *
+     */
+    protected EmailAddress(String myAddress) {
+        value = myAddress;
+    }
 
-	/**
-	 *
-	 */
-	protected EmailAddress(String myAddress) {
-		value = myAddress;
-	}
+    /**
+     *
+     */
+    public static EmailAddress getFromString(String myValue) {
+        if (STRONG_CHECK) checkEmailStringValidation(myValue);
+        return doGetFromString(myValue);
+    }
 
-	/**
-	 *
-	 */
-	public static EmailAddress getFromString(String myValue) {
-		return doGetFromString(myValue);
-	}
+    private static void checkEmailStringValidation(String myValue) throws IllegalArgumentException {
 
-	/**
-	 *
-	 */
-	protected static EmailAddress doGetFromString(String myValue) {
-		EmailAddress result = instances.get(myValue);
-		if (result == null) {
-			synchronized (instances) {
-				result = instances.get(myValue);
-				if (result == null) {
-					result = new EmailAddress(myValue);
-					instances.put(myValue, result);
-				}
-			}
-		}
+        String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+        if (myValue == null || !myValue.matches(regex)) {
+            throw new IllegalArgumentException(myValue + "Invalid Email");
+        }
+    }
 
-		return result;
-	}
+    /**
+     *
+     */
+    protected static EmailAddress doGetFromString(String myValue) {
+        EmailAddress result = instances.get(myValue);
+        if (result == null) {
+            synchronized (instances) {
+                result = instances.get(myValue);
+                if (result == null) {
+                    result = new EmailAddress(myValue);
+                    instances.put(myValue, result);
+                }
+            }
+        }
 
-	/**
-	 *
-	 */
-	public String asString() {
-		return value;
-	}
+        return result;
+    }
 
-	/**
-	 *
-	 */
-	public InternetAddress asInternetAddress() {
-		InternetAddress result = null;
+    /**
+     *
+     */
+    public String asString() {
+        return value;
+    }
 
-		try {
-			result = new InternetAddress(value);
-		} catch (AddressException ex) {
-			// should not happen
-		}
+    /**
+     *
+     */
+    public InternetAddress asInternetAddress() {
+        InternetAddress result = null;
 
-		return result;
-	}
+        try {
+            result = new InternetAddress(value);
+        } catch (AddressException ex) {
+            // should not happen
+        }
 
-	/**
-	 * @methodtype boolean-query
-	 */
-	public boolean isEqual(EmailAddress emailAddress) {
-		return this == emailAddress;
-	}
+        return result;
+    }
 
-	/**
-	 *
-	 */
+    /**
+     * @methodtype boolean-query
+     */
+    public boolean isEqual(EmailAddress emailAddress) {
+        return this == emailAddress;
+    }
 
-	public boolean isValid() {
-		return !isEmpty();
-	}
+    /**
+     *
+     */
 
-	/**
-	 *
-	 */
-	public boolean isEmpty() {
-		return this == EMPTY;
-	}
+    public boolean isValid() {
+        return !isEmpty();
+    }
+
+    /**
+     *
+     */
+    public boolean isEmpty() {
+        return this == EMPTY;
+    }
 
 }

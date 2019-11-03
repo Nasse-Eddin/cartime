@@ -20,6 +20,7 @@
 
 package org.wahlzeit.utils;
 
+import junit.framework.TestCase;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
@@ -28,7 +29,7 @@ import static org.junit.Assert.fail;
 /**
  * Test cases for the Version class.
  */
-public class VersionTest {
+public class VersionTest   {
 
 	/**
 	 *

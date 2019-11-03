@@ -1,5 +1,6 @@
 package org.wahlzeit.services;
 
+import junit.framework.TestCase;
 import org.junit.ClassRule;
 import org.junit.Test;
 import org.junit.rules.RuleChain;
@@ -32,7 +33,7 @@ import static org.wahlzeit.services.LogBuilder.USER_LEVEL;
  * 
  * @review
  */
-public class LogBuilderTest {
+public class LogBuilderTest  {
 
 
 	@ClassRule

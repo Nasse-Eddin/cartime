@@ -1,5 +1,6 @@
 package org.wahlzeit.handlers;
 
+import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Rule;
@@ -25,7 +26,7 @@ import static org.junit.Assert.assertTrue;
 /**
  * Acceptance tests for the TellFriend feature.
  */
-public class TellFriendTest {
+public class TellFriendTest  {
 
 	@ClassRule
 	public static SysConfigProvider sysConfigProvider = new SysConfigProvider();

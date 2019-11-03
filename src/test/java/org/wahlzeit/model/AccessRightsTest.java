@@ -19,6 +19,7 @@
  */
 package org.wahlzeit.model;
 
+import junit.framework.TestCase;
 import org.junit.Test;
 
 import static org.junit.Assert.assertFalse;
@@ -28,7 +29,7 @@ import static org.junit.Assert.assertTrue;
 /**
  * All test cases of the class {@link AccessRights}.
  */
-public class AccessRightsTest {
+public class AccessRightsTest  {
 
 	// test cases that cover valid behavior
 

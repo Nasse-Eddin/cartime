@@ -2,6 +2,7 @@ package org.wahlzeit.model.persistence;
 
 import com.google.appengine.api.images.Image;
 import com.google.appengine.api.images.ImagesServiceFactory;
+import junit.framework.TestCase;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,7 +18,7 @@ import static org.junit.Assert.fail;
  * 
  * @review
  */
-public abstract class AbstractAdapterTest {
+public abstract class AbstractAdapterTest  {
 
 	protected ImageStorage imageStorage;
 	protected Image smallTestImage;

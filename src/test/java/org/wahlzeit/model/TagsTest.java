@@ -27,7 +27,7 @@ import java.util.Set;
 /**
  * Test cases for the Tags class.
  */
-public class TagsTest extends TestCase {
+public class TagsTest extends TestCase{
 
 	/**
 	 * @param args

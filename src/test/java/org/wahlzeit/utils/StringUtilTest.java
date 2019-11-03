@@ -20,6 +20,7 @@
 
 package org.wahlzeit.utils;
 
+import junit.framework.TestCase;
 import org.junit.Test;
 
 import java.io.File;
@@ -29,7 +30,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * Test cases for the StringUtil class.
  */
-public class StringUtilTest {
+public class StringUtilTest extends TestCase {
 
 	/**
 	 *

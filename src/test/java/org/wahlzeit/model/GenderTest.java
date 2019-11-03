@@ -19,6 +19,7 @@
  */
 package org.wahlzeit.model;
 
+import junit.framework.TestCase;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
@@ -26,7 +27,7 @@ import static org.junit.Assert.assertTrue;
 /**
  * Test cases for the Gender class.
  */
-public class GenderTest {
+public class GenderTest  {
 
 	/**
 	 *

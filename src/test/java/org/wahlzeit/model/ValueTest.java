@@ -20,6 +20,7 @@
 
 package org.wahlzeit.model;
 
+import junit.framework.TestCase;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
@@ -27,7 +28,7 @@ import static org.junit.Assert.assertTrue;
 /**
  * Test cases for a variety of value object classes.
  */
-public class ValueTest {
+public class ValueTest   {
 
 	/**
 	 *
