@@ -2,6 +2,8 @@ package org.wahlzeit.model;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
+import org.wahlzeit.model.Car.CarPhotoFactoryTest;
+import org.wahlzeit.model.Car.CarPhotoManagerTest;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
@@ -13,6 +15,8 @@ import org.junit.runners.Suite;
         PhotoFilterTest.class,
         TagsTest.class,
         UserStatusTest.class,
-        ValueTest.class})
+        ValueTest.class,
+        CarPhotoManagerTest.class,
+        CarPhotoFactoryTest.class})
 public class ModelTest {
 }

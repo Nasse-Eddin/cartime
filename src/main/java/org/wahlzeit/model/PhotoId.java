@@ -150,7 +150,7 @@ public class PhotoId implements Serializable {
 	/**
 	 *
 	 */
-	protected PhotoId(int myValue) {
+    public PhotoId(int myValue) {
 		value = myValue;
 		stringValue = getFromInt(myValue);
 	}
