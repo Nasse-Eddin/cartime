@@ -38,11 +38,11 @@ dependencies {
     // https://cloud.google.com/appengine/docs/standard/java/release-notes
 
     providedCompile group: 'javax.servlet', name: 'servlet-api', version: '2.5'
-    compile 'com.google.appengine:appengine:+'
+    compile 'com.google.appengine:appengine:1.9.76'
+	//set the old version of google
+    appengineSdk 'com.google.appengine:appengine-java-sdk:1.9.76'
 
-    appengineSdk 'com.google.appengine:appengine-java-sdk:+'
-
-    compile 'com.google.appengine:appengine-api-1.0-sdk:+'
+    compile 'com.google.appengine:appengine-api-1.0-sdk:1.9.76'
     compile 'com.google.appengine.tools:appengine-gcs-client:+'
     compile 'com.googlecode.objectify:objectify:5.1.21'
     //compile 'javax.servlet:servlet-api:2.5' // GAE works with only with 2.5
