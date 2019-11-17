@@ -4,6 +4,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.wahlzeit.model.Car.CarPhotoFactoryTest;
 import org.wahlzeit.model.Car.CarPhotoManagerTest;
+import org.wahlzeit.model.coordinate.CoordinateTest;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({

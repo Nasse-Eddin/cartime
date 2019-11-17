@@ -1,24 +1,24 @@
 package org.wahlzeit.location;
 
-import org.wahlzeit.model.Coordinate;
+import org.wahlzeit.model.coordinate.ICoordinate;
 
 public class Location {
 
-    private Coordinate coordinate;
+    private ICoordinate coordinate;
 
-    public Location(Coordinate coordinate) {
+    public Location(ICoordinate coordinate) {
         this.coordinate = coordinate;
     }
 
-    public Coordinate getCoordinate() {
+    public ICoordinate getCoordinate() {
         return coordinate;
     }
 
     @Override
     public boolean equals(Object object) {
-        if (object instanceof Coordinate) {
-            return coordinate.isEqual((Coordinate) object);
+        if (object instanceof ICoordinate) {
+            return coordinate.isEqual((ICoordinate) object);
         }
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException("The location type is undefined");
     }
 }

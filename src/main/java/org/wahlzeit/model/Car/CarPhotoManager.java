@@ -26,7 +26,7 @@ public class CarPhotoManager extends PhotoManager {
         photoTagCollector = CarPhotoFactory.getInstance().createPhotoTagCollector();
     }
 
-    /**
+    /**meth
      * @MethodType Quere
      */
     @Override
