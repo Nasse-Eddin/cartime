@@ -26,13 +26,13 @@ public class CartesianCoordinateTest {
     public void isEqual() {
         ICoordinate coordinate1 = new CartesianCoordinate(0, 0, 0);
         ICoordinate coordinate2 = new CartesianCoordinate(0, 0, 0);
-        assertTrue(coordinate1.isEqual(coordinate2));
+        assertTrue(coordinate1.equals(coordinate2));
     }
 
     @Test
     public void testEquals() {
         ICoordinate coordinate1 = new CartesianCoordinate(0, 0, 0);
         ICoordinate coordinate2 = new CartesianCoordinate(0, 0, 0);
-        assertTrue(coordinate1.isEqual(coordinate2));
+        assertTrue(coordinate1.equals(coordinate2));
     }
 }

@@ -8,7 +8,7 @@ import static java.lang.Math.atan2;
  * @author Nasser Eddin Nasser
  * A 3D Cartesia Coordinate.
  */
-public class CartesianCoordinate implements ICoordinate {
+public class CartesianCoordinate extends AbstractCoordinate {
     private double x;
     private double y;
     private double z;
@@ -31,7 +31,7 @@ public class CartesianCoordinate implements ICoordinate {
     @Override
     public boolean isEqual(ICoordinate nCoordinate) {
         CartesianCoordinate cc = nCoordinate.asCartesianCoordinate();
-        return (x == cc.x) && (y == cc.y) && (z == cc.z);
+        return (Double.compare(x, cc.x) == 0) && (Double.compare(y, cc.y) == 0) && (Double.compare(z, cc.z) == 0);
     }
 
 
@@ -55,12 +55,13 @@ public class CartesianCoordinate implements ICoordinate {
         return this;
     }
 
-    @Override
-    public double getCartesianDistance(ICoordinate coordinate) {
+    public double doGetCartesianDistance(ICoordinate coordinate) {
+        CartesianCoordinate cartesianCoordinate = this.asCartesianCoordinate();
         CartesianCoordinate nCoordinate = coordinate.asCartesianCoordinate();
-        return Math.sqrt(Math.pow(this.getX() - nCoordinate.getX(), 2) +
-                Math.pow(this.getY() - nCoordinate.getY(), 2) +
-                Math.pow(this.getZ() - nCoordinate.getZ(), 2));
+        return Math.sqrt(Math.pow(cartesianCoordinate.getX() - nCoordinate.getX(), 2) +
+                Math.pow(cartesianCoordinate.getY() - nCoordinate.getY(), 2) +
+                Math.pow(cartesianCoordinate.getZ() - nCoordinate.getZ(), 2));
+
     }
 
     @Override
@@ -74,20 +75,9 @@ public class CartesianCoordinate implements ICoordinate {
         return new SphericalCoordinate(phi, theta, radius);
     }
 
-    @Override
-    public double getCentralAngle(ICoordinate coordinate) {
-//https://math.stackexchange.com/questions/2521886/how-to-find-angle-between-2-points-in-3d-space
-        CartesianCoordinate cc = coordinate.asCartesianCoordinate();
-        double cosAngle = ((this.x * cc.getX()) + (this.y * cc.getY()) + (this.z * cc.getX())) / (((Math.pow(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2), 0.5)) * (Math.pow(Math.pow(cc.getX(), 2) + Math.pow(cc.getY(), 2) + Math.pow(cc.getZ(), 2), 0.5))));
-        return Math.acos(cosAngle);
-    }
 
-    @Override
-    public boolean equals(Object object) {
-        if (object instanceof ICoordinate) {
-            return this.isEqual((ICoordinate) object);
-        }
-        throw new IllegalArgumentException(" The coordinate type is undefined");
+    public double doGetCentralAngle(ICoordinate coordinate) {
+        return coordinate.asSphericalCoordinate().getCentralAngle(this.asSphericalCoordinate());
     }
 
     //    https://stackoverflow.com/questions/9858376/hashcode-for-3d-integer-coordinates-with-high-spatial-coherence
