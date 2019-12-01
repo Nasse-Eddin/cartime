@@ -6,13 +6,20 @@ public abstract class AbstractCoordinate implements ICoordinate {
 
     @Override
     public boolean equals(Object object) {
-        if (object == null) {
-            return false;
-        }
-        if (object instanceof ICoordinate) {
-            return this.isEqual((ICoordinate) object);
-        }
-        throw new IllegalArgumentException("The coordinate type is undefined");
+        assertNotNull(object);
+        assertTyp(object);
+        return this.isEqual((ICoordinate) object);
+
+    }
+
+    protected void assertNotNull(Object object) {
+        if (object == null)
+            throw new IllegalArgumentException("Object is Null!");
+    }
+
+    protected void assertTyp(Object object) {
+        if (!(object instanceof ICoordinate))
+            throw new IllegalArgumentException("The coordinate type is undefined");
     }
 
     public abstract CartesianCoordinate asCartesianCoordinate();
@@ -32,4 +39,14 @@ public abstract class AbstractCoordinate implements ICoordinate {
     }
 
     public abstract double doGetCentralAngle(ICoordinate coordinate);
+
+    public abstract void assertInvariants();
+
+    protected static void assertValidDouble(double x) {
+        if (Double.isNaN(x) || Double.isInfinite(x)) {
+            throw new IllegalArgumentException(" Invalid double value!");
+        }
+
+    }
+
 }

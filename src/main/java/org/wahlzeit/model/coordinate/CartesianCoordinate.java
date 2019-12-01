@@ -20,6 +20,7 @@ public class CartesianCoordinate extends AbstractCoordinate {
         this.x = x;
         this.y = y;
         this.z = z;
+        assertInvariants();
     }
 
 
@@ -30,6 +31,8 @@ public class CartesianCoordinate extends AbstractCoordinate {
      */
     @Override
     public boolean isEqual(ICoordinate nCoordinate) {
+        assertNotNull(nCoordinate);
+        assertTyp(nCoordinate);
         CartesianCoordinate cc = nCoordinate.asCartesianCoordinate();
         return (Double.compare(x, cc.x) == 0) && (Double.compare(y, cc.y) == 0) && (Double.compare(z, cc.z) == 0);
     }
@@ -56,6 +59,8 @@ public class CartesianCoordinate extends AbstractCoordinate {
     }
 
     public double doGetCartesianDistance(ICoordinate coordinate) {
+        assertNotNull(coordinate);
+        assertTyp(coordinate);
         CartesianCoordinate cartesianCoordinate = this.asCartesianCoordinate();
         CartesianCoordinate nCoordinate = coordinate.asCartesianCoordinate();
         return Math.sqrt(Math.pow(cartesianCoordinate.getX() - nCoordinate.getX(), 2) +
@@ -77,7 +82,16 @@ public class CartesianCoordinate extends AbstractCoordinate {
 
 
     public double doGetCentralAngle(ICoordinate coordinate) {
+        assertNotNull(coordinate);
+        assertTyp(coordinate);
         return coordinate.asSphericalCoordinate().getCentralAngle(this.asSphericalCoordinate());
+    }
+
+    @Override
+    public void assertInvariants() {
+        assertValidDouble(this.x);
+        assertValidDouble(this.y);
+        assertValidDouble(this.z);
     }
 
     //    https://stackoverflow.com/questions/9858376/hashcode-for-3d-integer-coordinates-with-high-spatial-coherence
