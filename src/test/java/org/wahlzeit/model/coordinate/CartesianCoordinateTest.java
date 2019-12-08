@@ -27,16 +27,6 @@ public class CartesianCoordinateTest {
         assertTrue(coordinate1.equals(coordinate2));
     }
 
-    @Test
-    public void isEqualNull() {
-        try {
-            ICoordinate coordinate1 = new CartesianCoordinate(0, 0, 0);
-            assertThrows
-        } catch (CoordinateException e) {
-            e.printStackTrace();
-        }
-
-    }
 
     @Test
     public void testEquals() throws CoordinateException {
