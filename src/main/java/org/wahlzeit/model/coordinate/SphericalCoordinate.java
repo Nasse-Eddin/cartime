@@ -9,7 +9,7 @@ public class SphericalCoordinate extends AbstractCoordinate {
     private double theta;
     private double phi;
 
-    public SphericalCoordinate(double radius, double theta, double phi) {
+    public SphericalCoordinate(double radius, double theta, double phi) throws CoordinateException {
         this.radius = radius;
         this.theta = theta;
         this.phi = phi;
@@ -18,14 +18,19 @@ public class SphericalCoordinate extends AbstractCoordinate {
 
     @Override
     public boolean isEqual(ICoordinate coordinate) {
-        assertNotNull(coordinate);
-        assertTyp(coordinate);
-        SphericalCoordinate cc = coordinate.asSphericalCoordinate();
-        return (Double.compare(phi, cc.getPhi()) == 0) && (Double.compare(theta, cc.getTheta()) == 0) && (Double.compare(radius, cc.getRadius()) == 0);
+        try {
+            assertNotNull(coordinate);
+            assertTyp(coordinate);
+            SphericalCoordinate cc = coordinate.asSphericalCoordinate();
+            return (Double.compare(phi, cc.getPhi()) == 0) && (Double.compare(theta, cc.getTheta()) == 0) && (Double.compare(radius, cc.getRadius()) == 0);
+        } catch (CoordinateException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     @Override
-    public CartesianCoordinate asCartesianCoordinate() {
+    public CartesianCoordinate asCartesianCoordinate() throws CoordinateException {
 //        x = r cos(phi) sin(theta)
 //        y = r sin(phi) sin(theta)
 //        z = r cos(phi)
@@ -35,7 +40,7 @@ public class SphericalCoordinate extends AbstractCoordinate {
         return new CartesianCoordinate(x, y, z);
     }
 
-    public double doGetCartesianDistance(ICoordinate coordinate) {
+    public double doGetCartesianDistance(ICoordinate coordinate) throws CoordinateException {
         assertNotNull(coordinate);
         assertTyp(coordinate);
         return this.asCartesianCoordinate().getCartesianDistance(coordinate.asCartesianCoordinate());
@@ -47,7 +52,7 @@ public class SphericalCoordinate extends AbstractCoordinate {
         return this;
     }
 
-    public double doGetCentralAngle(ICoordinate coordinate) {
+    public double doGetCentralAngle(ICoordinate coordinate) throws CoordinateException {
         //https://math.stackexchange.com/questions/2521886/how-to-find-angle-between-2-points-in-3d-space
         assertNotNull(coordinate);
         assertTyp(coordinate);
@@ -61,7 +66,7 @@ public class SphericalCoordinate extends AbstractCoordinate {
         return theta;
     }
 
-    public void setTheta(double theta) {
+    public void setTheta(double theta) throws CoordinateException {
         assertValidDouble(theta);
         this.theta = theta;
     }
@@ -70,12 +75,12 @@ public class SphericalCoordinate extends AbstractCoordinate {
         return radius;
     }
 
-    public void setRadius(double radius) {
+    public void setRadius(double radius) throws CoordinateException {
         assertValidDouble(radius);
         this.radius = radius;
     }
 
-    public double getPhi() {
+    public double getPhi() throws CoordinateException {
         assertValidDouble(phi);
         return phi;
     }
@@ -103,7 +108,7 @@ public class SphericalCoordinate extends AbstractCoordinate {
     }
 
     @Override
-    public void assertInvariants() {
+    public void assertInvariants() throws CoordinateException {
         assertValidDouble(this.radius);
         assertValidDouble(this.phi);
         assertValidDouble(this.theta);

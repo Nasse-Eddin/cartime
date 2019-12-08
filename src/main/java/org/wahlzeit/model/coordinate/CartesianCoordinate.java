@@ -16,7 +16,7 @@ public class CartesianCoordinate extends AbstractCoordinate {
     /**
      * constructor
      */
-    public CartesianCoordinate(double x, double y, double z) {
+    public CartesianCoordinate(double x, double y, double z) throws CoordinateException {
         this.x = x;
         this.y = y;
         this.z = z;
@@ -31,10 +31,15 @@ public class CartesianCoordinate extends AbstractCoordinate {
      */
     @Override
     public boolean isEqual(ICoordinate nCoordinate) {
-        assertNotNull(nCoordinate);
-        assertTyp(nCoordinate);
-        CartesianCoordinate cc = nCoordinate.asCartesianCoordinate();
-        return (Double.compare(x, cc.x) == 0) && (Double.compare(y, cc.y) == 0) && (Double.compare(z, cc.z) == 0);
+        try {
+            assertNotNull(nCoordinate);
+            assertTyp(nCoordinate);
+            CartesianCoordinate cc = nCoordinate.asCartesianCoordinate();
+            return (Double.compare(x, cc.x) == 0) && (Double.compare(y, cc.y) == 0) && (Double.compare(z, cc.z) == 0);
+        } catch (CoordinateException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
 
@@ -58,7 +63,7 @@ public class CartesianCoordinate extends AbstractCoordinate {
         return this;
     }
 
-    public double doGetCartesianDistance(ICoordinate coordinate) {
+    public double doGetCartesianDistance(ICoordinate coordinate) throws CoordinateException {
         assertNotNull(coordinate);
         assertTyp(coordinate);
         CartesianCoordinate cartesianCoordinate = this.asCartesianCoordinate();
@@ -70,7 +75,7 @@ public class CartesianCoordinate extends AbstractCoordinate {
     }
 
     @Override
-    public SphericalCoordinate asSphericalCoordinate() {
+    public SphericalCoordinate asSphericalCoordinate() throws CoordinateException {
 //        r = √(x2+y2+z2)
 //        phi = atan2(y, x)
 //        theta= acos(z/r)
@@ -81,14 +86,14 @@ public class CartesianCoordinate extends AbstractCoordinate {
     }
 
 
-    public double doGetCentralAngle(ICoordinate coordinate) {
+    public double doGetCentralAngle(ICoordinate coordinate) throws CoordinateException {
         assertNotNull(coordinate);
         assertTyp(coordinate);
         return coordinate.asSphericalCoordinate().getCentralAngle(this.asSphericalCoordinate());
     }
 
     @Override
-    public void assertInvariants() {
+    public void assertInvariants() throws CoordinateException {
         assertValidDouble(this.x);
         assertValidDouble(this.y);
         assertValidDouble(this.z);

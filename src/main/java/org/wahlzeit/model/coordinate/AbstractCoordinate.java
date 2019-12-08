@@ -6,45 +6,49 @@ public abstract class AbstractCoordinate implements ICoordinate {
 
     @Override
     public boolean equals(Object object) {
-        assertNotNull(object);
-        assertTyp(object);
+        try {
+            assertNotNull(object);
+            assertTyp(object);
+        } catch (CoordinateException e) {
+            e.printStackTrace();
+        }
         return this.isEqual((ICoordinate) object);
 
     }
 
-    protected void assertNotNull(Object object) {
+    protected void assertNotNull(Object object)throws CoordinateException {
         if (object == null)
-            throw new IllegalArgumentException("Object is Null!");
+            throw new CoordinateException("Object is Null!");
     }
 
-    protected void assertTyp(Object object) {
+    protected void assertTyp(Object object)throws CoordinateException {
         if (!(object instanceof ICoordinate))
-            throw new IllegalArgumentException("The coordinate type is undefined");
+            throw new CoordinateException("The coordinate type is undefined");
     }
 
-    public abstract CartesianCoordinate asCartesianCoordinate();
+    public abstract CartesianCoordinate asCartesianCoordinate() throws CoordinateException;
 
 
-    public double getCartesianDistance(ICoordinate coordinate) {
+    public double getCartesianDistance(ICoordinate coordinate)throws CoordinateException {
         return doGetCartesianDistance(coordinate);
     }
 
-    protected abstract double doGetCartesianDistance(ICoordinate coordinate);
+    protected abstract double doGetCartesianDistance(ICoordinate coordinate)throws CoordinateException;
 
-    public abstract SphericalCoordinate asSphericalCoordinate();
+    public abstract SphericalCoordinate asSphericalCoordinate() throws CoordinateException;
 
 
-    public double getCentralAngle(ICoordinate coordinate) {
+    public double getCentralAngle(ICoordinate coordinate) throws CoordinateException {
         return doGetCentralAngle(coordinate);
     }
 
-    public abstract double doGetCentralAngle(ICoordinate coordinate);
+    public abstract double doGetCentralAngle(ICoordinate coordinate) throws CoordinateException;
 
-    public abstract void assertInvariants();
+    public abstract void assertInvariants() throws CoordinateException;
 
-    protected static void assertValidDouble(double x) {
+    protected static void assertValidDouble(double x) throws CoordinateException {
         if (Double.isNaN(x) || Double.isInfinite(x)) {
-            throw new IllegalArgumentException(" Invalid double value!");
+            throw new CoordinateException(" Invalid double value! ", AbstractCoordinate.class.getName().toString(), x);
         }
 
     }

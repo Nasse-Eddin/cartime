@@ -18,6 +18,8 @@ public class CarPhoto extends Photo {
      */
     public CarPhoto(PhotoId myId) {
         super(myId);
+        if (myId == null) throw new NullPointerException("Null Photo Id in class:" + this.getClass());
+        if (!(myId instanceof PhotoId)) throw new IllegalArgumentException("Undefined Photo Id in class:" + this.getClass());
         id = myId;
     }
 
@@ -32,6 +34,8 @@ public class CarPhoto extends Photo {
      * @MethodType Mutation
      */
     public void setBrand(CarBrand brand) {
+        if (brand == null) throw new NullPointerException("Null brand in class:" + this.getClass());
+        if (!(brand instanceof CarBrand)) throw new IllegalArgumentException("Undefined brand in class:" + this.getClass());
         this.brand = brand;
     }
 
@@ -46,6 +50,7 @@ public class CarPhoto extends Photo {
      * @MethodType Mutation
      */
     public void setModel(String model) {
+        if (model == null) throw new NullPointerException("Null model! in class:" + this.getClass());
         this.model = model;
     }
 
@@ -60,6 +65,8 @@ public class CarPhoto extends Photo {
      * @MethodType Mutation
      */
     public void setCarType(CarType carType) {
+        if (carType == null) throw new NullPointerException("Null Car type! in class:" + this.getClass());
+        if (!(carType instanceof CarType)) throw new IllegalArgumentException("Undefined car type in class:" + this.getClass());
         this.carType = carType;
     }
 

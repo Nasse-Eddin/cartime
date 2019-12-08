@@ -49,6 +49,7 @@ public class CarPhotoManager extends PhotoManager {
     public Photo getPhoto(PhotoId id) {
         if (id != null)
             return getPhotoFromId(id);
-        return null;
+          new NullPointerException();
+          return null;
     }
 }

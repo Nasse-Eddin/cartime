@@ -24,7 +24,7 @@ public class CarPhotoFactoryTest {
 
     @Test
     public void testCreatePhoto() {
-        PhotoId id = new PhotoId(123);
+        PhotoId id = new PhotoId(555);
         Photo car = new CarPhoto(id);
         assertEquals(cpf.createPhoto(id).getId(), car.getId());
     }

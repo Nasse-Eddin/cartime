@@ -1,5 +1,6 @@
 package org.wahlzeit.location;
 
+import org.wahlzeit.model.coordinate.CoordinateException;
 import org.wahlzeit.model.coordinate.ICoordinate;
 
 public class Location {
@@ -17,8 +18,13 @@ public class Location {
     @Override
     public boolean equals(Object object) {
         if (object instanceof ICoordinate) {
-            return coordinate.isEqual((ICoordinate) object);
+            try {
+                return coordinate.isEqual((ICoordinate) object);
+            } catch (CoordinateException e) {
+                e.printStackTrace();
+            }
+
         }
-        throw new IllegalArgumentException("The location type is undefined");
+        return false;
     }
 }
