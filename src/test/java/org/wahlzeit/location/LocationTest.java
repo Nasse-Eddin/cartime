@@ -11,15 +11,15 @@ public class LocationTest {
 
     @Test
     public void testGetCoordinate() throws CoordinateException {
-        Location location = new Location(new CartesianCoordinate(0, 1, 2));
+        Location location = new Location(CartesianCoordinate.getCoordinate(0, 1, 2));
         ICoordinate locationCoordinate = location.getCoordinate();
-        assertEquals(locationCoordinate, new CartesianCoordinate(0, 1, 2));
-        assertNotEquals(locationCoordinate, new CartesianCoordinate(99, 99, 99));
+        assertEquals(locationCoordinate, CartesianCoordinate.getCoordinate(0, 1, 2));
+        assertNotEquals(locationCoordinate, CartesianCoordinate.getCoordinate(99, 99, 99));
     }
 
     @Test
     public void testEquals() throws CoordinateException {
-        Location location = new Location(new CartesianCoordinate(0, 1, 2));
-        assertTrue(location.equals(new CartesianCoordinate(0, 1, 2)));
+        Location location = new Location(CartesianCoordinate.getCoordinate(0, 1, 2));
+        assertTrue(location.equals(CartesianCoordinate.getCoordinate(0, 1, 2)));
     }
 }

@@ -4,12 +4,12 @@ package org.wahlzeit.model.coordinate;
  * @author Nasser Eddin Nasser
  * A 3D Spherical Coordinate.
  */
-public class SphericalCoordinate extends AbstractCoordinate {
-    private double radius;
-    private double theta;
-    private double phi;
+public final class SphericalCoordinate extends AbstractCoordinate {
+    protected final double radius;
+    protected final double theta;
+    protected final double phi;
 
-    public SphericalCoordinate(double radius, double theta, double phi) throws CoordinateException {
+    private SphericalCoordinate(double radius, double theta, double phi) throws CoordinateException {
         this.radius = radius;
         this.theta = theta;
         this.phi = phi;
@@ -37,7 +37,7 @@ public class SphericalCoordinate extends AbstractCoordinate {
         double x = radius * Math.cos(phi) * Math.sin(theta);
         double y = radius * Math.sin(phi) * Math.sin(theta);
         double z = radius * Math.cos(phi);
-        return new CartesianCoordinate(x, y, z);
+        return CartesianCoordinate.getCoordinate(x, y, z);
     }
 
     public double doGetCartesianDistance(ICoordinate coordinate) throws CoordinateException {
@@ -48,8 +48,8 @@ public class SphericalCoordinate extends AbstractCoordinate {
 
 
     @Override
-    public SphericalCoordinate asSphericalCoordinate() {
-        return this;
+    public SphericalCoordinate asSphericalCoordinate() throws CoordinateException {
+        return this.getCoordinate(radius, phi, theta);
     }
 
     public double doGetCentralAngle(ICoordinate coordinate) throws CoordinateException {
@@ -66,28 +66,17 @@ public class SphericalCoordinate extends AbstractCoordinate {
         return theta;
     }
 
-    public void setTheta(double theta) throws CoordinateException {
-        assertValidDouble(theta);
-        this.theta = theta;
-    }
 
     public double getRadius() {
         return radius;
     }
 
-    public void setRadius(double radius) throws CoordinateException {
-        assertValidDouble(radius);
-        this.radius = radius;
-    }
 
     public double getPhi() throws CoordinateException {
         assertValidDouble(phi);
         return phi;
     }
 
-    public void setPhi(double phi) {
-        this.phi = phi;
-    }
 
     /**
      * Get a hashCode for this set of spherical coordinates.
@@ -103,7 +92,7 @@ public class SphericalCoordinate extends AbstractCoordinate {
         return 449 * (79 * Double.hashCode(radius) + Double.hashCode(theta) + Double.hashCode(phi));
     }
 
-    public boolean isNaN() {
+    private boolean isNaN() {
         return Double.isNaN(radius) || Double.isNaN(theta) || Double.isNaN(phi);
     }
 
@@ -112,6 +101,15 @@ public class SphericalCoordinate extends AbstractCoordinate {
         assertValidDouble(this.radius);
         assertValidDouble(this.phi);
         assertValidDouble(this.theta);
+    }
+
+    public static SphericalCoordinate getCoordinate(final double radius, final double phi, final double theta) throws CoordinateException {
+        SphericalCoordinate coordinate = new SphericalCoordinate(radius, phi, theta);
+        int hash = coordinate.hashCode();
+        if (!coordinates.contains(hash)) {
+            coordinates.put(hash, coordinate);
+        }
+        return (SphericalCoordinate) coordinates.get(hash);
     }
 
 }

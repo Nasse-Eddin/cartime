@@ -1,8 +1,12 @@
 package org.wahlzeit.model.coordinate;
 
+import java.util.concurrent.ConcurrentHashMap;
+
 public abstract class AbstractCoordinate implements ICoordinate {
 
     public abstract boolean isEqual(ICoordinate coordinate);
+
+    protected static ConcurrentHashMap<Integer, ICoordinate> coordinates = new ConcurrentHashMap<>(); // Thread safe HashMap
 
     @Override
     public boolean equals(Object object) {
@@ -16,12 +20,12 @@ public abstract class AbstractCoordinate implements ICoordinate {
 
     }
 
-    protected void assertNotNull(Object object)throws CoordinateException {
+    protected void assertNotNull(Object object) throws CoordinateException {
         if (object == null)
             throw new CoordinateException("Object is Null!");
     }
 
-    protected void assertTyp(Object object)throws CoordinateException {
+    protected void assertTyp(Object object) throws CoordinateException {
         if (!(object instanceof ICoordinate))
             throw new CoordinateException("The coordinate type is undefined");
     }
@@ -29,11 +33,11 @@ public abstract class AbstractCoordinate implements ICoordinate {
     public abstract CartesianCoordinate asCartesianCoordinate() throws CoordinateException;
 
 
-    public double getCartesianDistance(ICoordinate coordinate)throws CoordinateException {
+    public double getCartesianDistance(ICoordinate coordinate) throws CoordinateException {
         return doGetCartesianDistance(coordinate);
     }
 
-    protected abstract double doGetCartesianDistance(ICoordinate coordinate)throws CoordinateException;
+    protected abstract double doGetCartesianDistance(ICoordinate coordinate) throws CoordinateException;
 
     public abstract SphericalCoordinate asSphericalCoordinate() throws CoordinateException;
 
