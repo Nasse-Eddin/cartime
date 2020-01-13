@@ -23,6 +23,7 @@ package org.wahlzeit.model;
 import com.google.appengine.api.images.Image;
 import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.Work;
+import org.wahlzeit.PatternInstance;
 import org.wahlzeit.model.persistence.ImageStorage;
 import org.wahlzeit.services.LogBuilder;
 import org.wahlzeit.services.ObjectManager;
@@ -40,6 +41,11 @@ import java.util.Map;
 import java.util.Set;
 import java.util.logging.Logger;
 
+
+@PatternInstance(
+        patternName = "Singleton",
+        participants = {"ConcretePhotoManager", "ConcretePhotoManager", "PhotoManager"}
+)
 /**
  * A photo manager provides access to and manages photos.
  */

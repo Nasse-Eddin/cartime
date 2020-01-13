@@ -1,6 +1,13 @@
 package org.wahlzeit.model.coordinate;
 
+import org.wahlzeit.PatternInstance;
+
 import java.util.concurrent.ConcurrentHashMap;
+
+@PatternInstance(
+        patternName = "Abstract Factory Design Pattern",
+        participants = {"ConcreteCoordinate", "AbstractCoordinate", "CartesianCoordinate", "SphericalCoordinate"}
+)
 
 public abstract class AbstractCoordinate implements ICoordinate {
 

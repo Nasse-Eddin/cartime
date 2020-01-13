@@ -1,10 +1,16 @@
 package org.wahlzeit.model.coordinate;
 
+import org.wahlzeit.PatternInstance;
+
 /**
  * @author Nasser Eddin Nasser
  * A 3D Spherical Coordinate.
  */
-public final class SphericalCoordinate extends AbstractCoordinate {
+@PatternInstance(
+        patternName = "Composite",
+        participants = {"CartesianCoordinate", "SphericalCoordinate"}
+)
+public class SphericalCoordinate extends AbstractCoordinate {
     protected final double radius;
     protected final double theta;
     protected final double phi;

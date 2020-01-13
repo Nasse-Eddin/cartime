@@ -1,11 +1,16 @@
 package org.wahlzeit.model.Car;
 
+import org.wahlzeit.PatternInstance;
 import org.wahlzeit.model.Photo;
 import org.wahlzeit.model.PhotoId;
 import org.wahlzeit.model.PhotoManager;
 
 import java.util.logging.Logger;
 
+@PatternInstance(
+        patternName = "Singleton",
+        participants = {"CarPhotoManager", "PhotoManager"}
+)
 public class CarPhotoManager extends PhotoManager {
 
     protected static final CarPhotoManager instance = new CarPhotoManager();

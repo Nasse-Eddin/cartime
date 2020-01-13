@@ -1,6 +1,8 @@
 package org.wahlzeit.model.coordinate;
 
 
+import org.wahlzeit.PatternInstance;
+
 import static java.lang.Math.acos;
 import static java.lang.Math.atan2;
 
@@ -8,7 +10,13 @@ import static java.lang.Math.atan2;
  * @author Nasser Eddin Nasser
  * A 3D Cartesia Coordinate.
  */
-public final class CartesianCoordinate extends AbstractCoordinate {
+
+@PatternInstance(
+        patternName = "Composite",
+        participants = {"CartesianCoordinate", "SphericalCoordinate"}
+)
+
+public class CartesianCoordinate extends AbstractCoordinate {
     protected final double x;
     protected final double y;
     protected final double z;
