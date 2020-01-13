@@ -20,6 +20,7 @@
 
 package org.wahlzeit.model;
 
+
 import com.google.api.client.util.ArrayMap;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.images.Image;

@@ -48,7 +48,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
-
 /**
  * The main servlet class for handling incoming and outgoing requests.
  */
@@ -78,8 +77,8 @@ public class MainServlet extends AbstractServlet {
 		log.info(LogBuilder.createUserMessage().addParameter("posted to", link).toString());
 
 		Map args = getRequestArgs(request, us);
-		log.info(LogBuilder.createSystemMessage().
-				addParameter("POST arguments", getRequestArgsAsString(us, args)).toString());
+		log.info(LogBuilder.createSystemMessage().addParameter("POST arguments", getRequestArgsAsString(us, args))
+				.toString());
 
 		WebFormHandler formHandler = WebPartHandlerManager.getWebFormHandler(link);
 		link = PartUtil.DEFAULT_PAGE_NAME;
@@ -109,13 +108,12 @@ public class MainServlet extends AbstractServlet {
 		link = link.substring(linkStart, linkEnd);
 		log.info(LogBuilder.createUserMessage().addParameter("requested URI", request.getRequestURI()).toString());
 
-
 		WebPageHandler handler = WebPartHandlerManager.getWebPageHandler(link);
 		String newLink = PartUtil.DEFAULT_PAGE_NAME;
 		if (handler != null) {
 			Map args = getRequestArgs(request, us);
-			log.info(LogBuilder.createSystemMessage().
-					addParameter("GET arguments", getRequestArgsAsString(us, args)).toString());
+			log.info(LogBuilder.createSystemMessage().addParameter("GET arguments", getRequestArgsAsString(us, args))
+					.toString());
 			newLink = handler.handleGet(us, link, args);
 		}
 
@@ -145,11 +143,12 @@ public class MainServlet extends AbstractServlet {
 	}
 
 	/**
-	 * Searches for files in the request and puts them in the resulting map with the key "fileName". When a file is
-	 * found, you can access its path by searching for elements with the key "fileName".
+	 * Searches for files in the request and puts them in the resulting map with the
+	 * key "fileName". When a file is found, you can access its path by searching
+	 * for elements with the key "fileName".
 	 */
-	protected Map getMultiPartRequestArgs(HttpServletRequest request, UserSession us) throws IOException,
-			ServletException {
+	protected Map getMultiPartRequestArgs(HttpServletRequest request, UserSession us)
+			throws IOException, ServletException {
 		Map<String, String> result = new HashMap<String, String>();
 		result.putAll(request.getParameterMap());
 		try {
@@ -172,9 +171,8 @@ public class MainServlet extends AbstractServlet {
 					InputStream is = fileItemStream.openStream();
 					String value = CharStreams.toString(new InputStreamReader(is, Charsets.UTF_8));
 					result.put(key, value);
-					log.config(LogBuilder.createSystemMessage().
-							addParameter("Key of uploaded parameter", key).
-							addParameter("value", value).toString());
+					log.config(LogBuilder.createSystemMessage().addParameter("Key of uploaded parameter", key)
+							.addParameter("value", value).toString());
 				}
 			}
 		} catch (Exception ex) {
