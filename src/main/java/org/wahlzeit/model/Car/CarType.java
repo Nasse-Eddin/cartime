@@ -7,7 +7,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 public class CarType extends DataObject {
-    protected Set<CarType> subTypes = new HashSet<CarType>(); //todo
+    protected Set<CarType> subTypes = new HashSet<CarType>();
     private CarType superCarType;
     private CarBrand carBrand;
     private machineType machineType;

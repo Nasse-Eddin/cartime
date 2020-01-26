@@ -5,6 +5,8 @@ import org.junit.Test;
 import org.wahlzeit.model.Photo;
 import org.wahlzeit.model.PhotoId;
 
+import java.io.IOException;
+
 import static org.junit.Assert.*;
 
 
@@ -37,7 +39,7 @@ public class CarPhotoFactoryTest {
 
     @Test
     public void testCreateCarPhoto() {
-        CarPhoto carPhoto = new CarPhoto();
+        CarPhoto carPhoto = (CarPhoto) cpf.getInstance().createPhoto();
         CarType audiA1 = new CarType(CarBrand.Audi, machineType.Compact);
         Car a1 = new Car(audiA1);
         carPhoto.setCar(a1);
