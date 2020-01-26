@@ -3,8 +3,6 @@ package org.wahlzeit.model.Car;
 import org.wahlzeit.model.Photo;
 import org.wahlzeit.model.PhotoId;
 
-// todo
-
 /**
  * A car photo represents a photo to be uploaded.
  * <p>

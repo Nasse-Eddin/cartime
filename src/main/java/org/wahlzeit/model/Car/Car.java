@@ -4,9 +4,7 @@ import org.wahlzeit.services.DataObject;
 
 import java.util.UUID;
 
-// todo
-
-/**
+ /**
  * Instantiation of car that use to create a car photo.
  * Each car has a type that is changeable and an unique ID that is unchangeable.
  * A car can be directly created from its constructor by adding a type of it, the Car Manager will check if the car already exist or it will add new car to carList "HashTable".
