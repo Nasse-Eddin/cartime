@@ -14,7 +14,7 @@ import org.wahlzeit.model.PhotoId;
  * CarType:
  * * 1- create new Type or get old type -> Each car photo contains a car, each car contains a car type
  * <p>
- * CarPhoto:
+ * Car:
  * * 1- setType(CarType) -> add a car type to a car, the car type is changeable
  * <p>
  * CarPhotoManagement:
